@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{%load plotly_dash%}
+
+{% block head %}
+{{block.super}}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-center">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Summary of AML2019</a>
+      </nav>
+<!-- /.container -->
+
+<div class="card" style="width: 100%;margin-top: 15px">
+
+  <div class="card-body">
+      <h5 class="card-title">Groundtruth value of testset</h5>
+    {{groundtruth|safe}}
+  </div>
+</div>
+<div class="card" style="width: 100%;margin-top: 15px">
+
+  <div class="card-body">
+      <h5 class="card-title">Performances of all Groups</h5>
+    {{performance|safe}}
+  </div>
+</div>
+<div class="card" style="width: 100%;margin-top: 15px">
+
+  <div class="card-body">
+      <h5 class="card-title">Logarithm of residuals for 8 Groups</h5>
+    {{logresiduals|safe}}
+  </div>
+</div>
+<div class="card" style="width: 100%;margin-top: 15px">
+
+  <div class="card-body">
+      <h5 class="card-title">RMSEs for 8 Groups</h5>
+    {{rmse|safe}}
+  </div>
+</div>
+
+<div class="card" style="width: 100%;margin-top: 15px">
+
+  <div class="card-body">
+    <!-- <div class="{%plotly_class name="SummaryResiduals"%}"> -->
+    <div class="card-body">
+      <h5 class="card-title">Summary Residuals</h5>
+    {%plotly_app name="SummaryResiduals" ratio=1%}
+    </div>
+  </div>
+</div>
+
+
+<!-- /.container -->
+
+
+</div>
+{% endblock %}
